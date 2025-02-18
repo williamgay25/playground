@@ -48,19 +48,25 @@ LLM Usage: Can use OS and APIs. Need to consider cost, privacy, uptime & reliabi
 
 # System Design
 
+PDF Dataclass
+
 Intake
 - Email Collection Service
 - Web Portal Collection Service
 - Shared Storage Service
 Processing
-- Extraction
-    1. OCR vs PDF Service and Conversion
-    2. Metric Extraction (Rule Based vs LLM Based)
-
-- Validation
+- Content Extraction Service
+    Note: OCR vs PDF, File Information / Structure
+- Metric Extraction Service
+    Note: Rule based vs llm
+- Metric Validation Service
 Output
-- Queries
-- Searches
+- Document Query Service
+- Document Search Service
+Orchestration
+
+Testing
+Logging
 
 
 Missing discussions
