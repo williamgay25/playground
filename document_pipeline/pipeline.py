@@ -26,17 +26,18 @@ class ExtractedMetrics:
 
 class ContentExtractionService:
     """ Service to handle the extraction of the content from the PDF """
-    def extract(self, pdf: PDF) -> Dict[str, Any]:
-        need_ocr = self._needs_ocr(pdf)
+    def extract(self, pdf: PDF) -> str:
+        """ need_ocr = self._needs_ocr(pdf)
         if need_ocr:
             return self._extract_ocr(pdf)
         else:
-            return self._extract_direct(pdf)
+            return self._extract_direct(pdf) """
+        return ""
 
     def _needs_ocr(self, pdf: PDF) -> bool:
         return False
 
-    def _extract_direct(self, pdf: PDF) -> Dict[str, Any]:
+    def _extract_direct(self, pdf: PDF) -> str:
         pdf_file = BytesIO(pdf.contents)
         
         reader = PdfReader(pdf_file)
@@ -45,11 +46,9 @@ class ContentExtractionService:
         for page in reader.pages:
             text += page.extract_text() + "\n"
             
-        return {
-            "text": text
-        }
-
-    def _extract_ocr(self, pdf: PDF) -> Dict[str, Any]:
+        return text
+    
+    def _extract_ocr(self, pdf: PDF) -> str:
         pass
 
     def score(self):
@@ -130,7 +129,6 @@ class PdfProcessingPipeline:
             raise ValidationError(messages)
         
         return metrics
-    
 
 if __name__ == "__main__":
     storage = ShareStorageService('./')
